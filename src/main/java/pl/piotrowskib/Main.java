@@ -1,9 +1,6 @@
 package pl.piotrowskib;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -27,6 +24,13 @@ public class Main {
 
         System.out.println(list);
         wypiszSrednia(list);
+
+        System.out.println();
+        List<Integer> sortedList = new ArrayList<>(list);
+        Collections.sort(sortedList);
+        System.out.println(sortedList);
+        System.out.println(mediana(sortedList));
+        System.out.println("Max nieposortowanej: " + list.get(max(list)));
     }
 
     private static void wypiszSrednia(List<Integer> list) {
@@ -35,5 +39,35 @@ public class Main {
             suma += o;
         }
         System.out.println(suma / list.size());
+    }
+
+    private static int mediana(List<Integer> list) {
+        if (list.size() % 2 != 0) {
+            return list.get(list.size() / 2);
+        } else {
+            return (list.get(list.size() / 2) + list.get(list.size() / 2 - 1)) / 2;
+        }
+    }
+
+    private static int max(List<Integer> list) {
+        int max = list.get(0), index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (max < list.get(i)) {
+                max = list.get(i);
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    private static int min(List<Integer> list) {
+        int max = list.get(0), index = 0;
+        for (int i = 0; i < list.size(); i++) {
+            if (max > list.get(i)) {
+                max = list.get(i);
+                index = i;
+            }
+        }
+        return index;
     }
 }
