@@ -1,17 +1,27 @@
 package pl.piotrowskib;
 
-public class Student {
-    private int indeks;
-    private String imie;
-    private String nazwisko;
+import lombok.Getter;
 
-    public Student(int indeks, String imie, String nazwisko) {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Student {
+    @Getter private String indeks;
+    @Getter private String imie;
+    @Getter private String nazwisko;
+    @Getter private Gender plec;
+    @Getter private List<Double> listaOcen;
+
+    Student(String indeks, String imie, String nazwisko, Gender plec) {
         this.indeks = indeks;
         this.imie = imie;
         this.nazwisko = nazwisko;
+        this.plec = plec;
+        this.listaOcen = new ArrayList<>();
     }
 
-    public int getIndeks() {
-        return indeks;
+    @Override
+    public String toString() {
+        return imie + " " + nazwisko;
     }
 }
